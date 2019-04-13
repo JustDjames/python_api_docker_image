@@ -96,4 +96,4 @@ api.add_resource(NewUser,"/newuser")
 api.add_resource(UpdateUser,"/user/<string:name>/update")
 api.add_resource(DeleteUser,"/user/<string:name>/delete")
 
-app.run(debug=True)
+app.run(host='0.0.0.0', port=5000, debug=True)
