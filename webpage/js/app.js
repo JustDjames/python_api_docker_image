@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         $('#UserModal').modal('show');
         modalTitle.innerHTML = 'New User';
         submitBtn.addEventListener('click',()=>{
-            if(!modalName.value){
+            if(modalName.value == ''){
                 alert('Please enter a Name for the new user')
-            }else if (!modalAge.value){
+            }else if (modalAge.value == ''){
                 alert('Please enter an Age for the new user')
-            }else if(!modalJob.value){
+            }else if(modalJob.value == ''){
                 alert('Please enter a Job for the new user')
             }else{
                 let userJson = modalToJson();
@@ -118,11 +118,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
             
             submitBtn.addEventListener('click',()=>{
-                if(!modalName.value){
+                if(modalName.value == ''){
                     alert('Please enter a Name for the new user')
-                }else if (!modalAge.value){
+                }else if (modalAge.value == '' ){
                     alert('Please enter an Age for the new user')
-                }else if(!modalJob.value){
+                }else if(modalJob.value == ''){
                     alert('Please enter a Job for the new user')
                 }else{
                     let userJson = modalToJson();
