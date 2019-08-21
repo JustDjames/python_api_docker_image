@@ -1,0 +1,48 @@
+div{
+    text-align: center;
+}
+
+.background{
+    background-color: rgb(41, 161, 151);
+    height: 600px;
+}
+
+.title{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.btn{
+    text-align: center;
+    width: 100%;
+}
+
+.txt{
+    background-color: rgb(229, 247, 250);
+}
+
+.row{
+    padding-bottom: 20px;
+}
+
+.lower{
+    margin-top: 69px;
+}
+
+#user{
+    padding-top: 10px;
+}
+
+#result{
+    overflow-y : auto;
+    width: 100%;
+    height: 363px;
+}
+
+#help{
+    height: 363px;
+}
+
+#help li{
+    font-size: 0.9rem;
+}
