@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     const allBtn = document.getElementById('allbtn');
     const updateBtn = document.getElementById('updatebtn');
     const userBox = document.getElementById('user');
-    const modalTitle = document.getElementById('ModalTitle');
-    const submitBtn = document.getElementById('ModalSubmitBtn');
-    const modalName = document.getElementById('modalName');
-    const modalAge = document.getElementById('modalAge');
-    const modalJob = document.getElementById('modalJob');
+    // const newTitle = document.getElementById('newTitle');
+    const newSubmitBtn = document.getElementById('newSubmitBtn');
+    const newName = document.getElementById('newName');
+    const newAge = document.getElementById('newAge');
+    const newJob = document.getElementById('newJob');
+    const updateSubmitBtn = document.getElementById('updateSubmitBtn');
+    const updateName = document.getElementById('updateName');
+    const updateAge = document.getElementById('updateAge');
+    const updateJob = document.getElementById('updateJob');
     let user;
 
     displayBtn.addEventListener('click',()=>{
@@ -53,19 +57,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     
     newBtn.addEventListener('click',()=>{
-        $('#UserModal').modal('show');
-        modalTitle.innerHTML = 'New User';
-        submitBtn.addEventListener('click',()=>{
-            if(modalName.value == ''){
+        $('#newModal').modal('show');
+        // newTitle.innerHTML = 'New User';
+        newSubmitBtn.addEventListener('click',()=>{
+            if(newName.value == ''){
                 alert('Please enter a Name for the new user')
-            }else if (modalAge.value == ''){
+            }else if (newAge.value == ''){
                 alert('Please enter an Age for the new user')
-            }else if(modalJob.value == ''){
+            }else if(newJob.value == ''){
                 alert('Please enter a Job for the new user')
             }else{
-                let userJson = modalToJson();
+                let userJson = newModalToJson();
                 modalClear();
-                $('#UserModal').modal('hide');
+                $('#newModal').modal('hide');
                 clear(res);
                 fetch(url+"new",{
                     method: 'POST',
@@ -102,32 +106,32 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(userBox.value){
             user = userBox.value;
             clear(res);
-            $('#UserModal').modal('show');
-            modalTitle.innerHTML = 'New User';
+            $('#updateModal').modal('show');
+            // modalTitle.innerHTML = 'New User';
             userBox.value = '';
             fetch(url+"user/"+user)
                 .then(response => checkErrors(response))
                 .then(response => response.json())
                 .then(data =>{
-                        modalName.value = data.name;
-                        modalAge.value = data.age;
-                        modalJob.value = data.job;
+                        updateName.value = data.name;
+                        updateAge.value = data.age;
+                        updateJob.value = data.job;
                 })
                 .catch(error =>{
                     console.error(error)
                 })
             
-            submitBtn.addEventListener('click',()=>{
-                if(modalName.value == ''){
+            updateSubmitBtn.addEventListener('click',()=>{
+                if(updateName.value == ''){
                     alert('Please enter a Name for the new user')
-                }else if (modalAge.value == '' ){
+                }else if (updateAge.value == '' ){
                     alert('Please enter an Age for the new user')
-                }else if(modalJob.value == ''){
+                }else if(updateJob.value == ''){
                     alert('Please enter a Job for the new user')
                 }else{
-                    let userJson = modalToJson();
+                    let userJson = updateModalToJson();
                     modalClear();
-                    $('#UserModal').modal('hide');       
+                    $('#updateModal').modal('hide');       
                     clear(res);
                     fetch(url+"update/"+user,{
                         method: 'PUT',
@@ -162,9 +166,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     };
 
     function modalClear(){
-        modalName.value = '';
-        modalAge.value = '';
-        modalJob.value = '';  
+        newName.value = '';
+        newAge.value = '';
+        newJob.value = '';
+        updateName.value = '';
+        updateAge.value = '';
+        updateJob.value = '';  
     }
 
     function printRes(element){
@@ -183,11 +190,19 @@ document.addEventListener('DOMContentLoaded',()=>{
         let line = newElement('hr');
         append (res,line);
     };
-    function modalToJson(){
+    function updateModalToJson(){
         let Obj = { "name":"","age":"","job":""};
-        Obj.name = modalName.value;
-        Obj.age = modalAge.value;
-        Obj.job = modalJob.value;
+        Obj.name = updateName.value;
+        Obj.age = updateAge.value;
+        Obj.job = updateJob.value;
+        let Json = JSON.stringify(Obj);
+        return Json
+    };
+    function newModalToJson(){
+        let Obj = { "name":"","age":"","job":""};
+        Obj.name = newName.value;
+        Obj.age = newAge.value;
+        Obj.job = newJob.value;
         let Json = JSON.stringify(Obj);
         return Json
     };
