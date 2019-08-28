@@ -1,0 +1,35 @@
+---
+version: "3"
+services:
+  web:
+    image: callmedjay/python_webpage:latest 
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          # each replica uses 10% of the cpu and 50 MB of memory
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+  api:
+    image: callmedjay/python_api:latest
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "5000:5000"
+    networks:
+      - apinet
+networks:
+  webnet:
+  apinet:
