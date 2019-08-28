@@ -7,6 +7,8 @@ This is the [basic python Api](https://github.com/JustDjames/basic_python_api) a
 ### Requirements
 * Docker ( install instructions [here](https://docs.docker.com/install/) )
 
+* Docker-compose (install instructions [here](https://docs.docker.com/compose/install/))
+
 ### Setup
 
 Once you have cloned this repo, navigate into the api directory and run the following command to build the image:
@@ -33,3 +35,10 @@ Or you can use the following command to pull from the docker repository
 3) To run the webpage run the following command (for the webpage work correctly the api image MUST be running in a container):
 
         docker run -d -p 80:80 webpage:latest
+
+4) navigate to ```localhost``` in your browser to use the webpage 
+
+5) you can also run the python_api and python_webpage as a service through docker_compose. To do so run the following command:
+
+        docker stack deploy -c docker-compose.yml python_api
+6) once again, you can navigate to ``localhost`` to use the webpage
